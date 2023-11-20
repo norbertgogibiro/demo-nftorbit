@@ -1,0 +1,5 @@
+// Z-index levels:
+$background: -1;
+$overContent: 1;
+$siteHeader: $overContent + 1;
+$overlay: $siteHeader + 1;

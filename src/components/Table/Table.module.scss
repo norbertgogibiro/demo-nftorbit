@@ -1,0 +1,145 @@
+@use "utils/styles/spaces";
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/borders";
+@use "utils/styles/breakpoints";
+@use "utils/styles/mixins";
+
+$size-tableGroupGap: 60px;
+
+.Table {
+  @include mixins.blackMilkGlassPanel(0.5, 0.15);
+
+  table {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+
+    tbody {
+      &:not(:first-of-type)::before {
+        content: "";
+        display: table-row;
+        height: $size-tableGroupGap;
+      }
+
+      tr {
+        &.clickableRow {
+          position: relative;
+          cursor: pointer;
+          outline: none;
+
+          &:active,
+          &:hover,
+          &:focus {
+            // Sketchy way of setting gradient table row borders as they
+            // are pretty much not supported as of 2023.08.26:
+            td:first-child:before {
+              content: "";
+              @include mixins.pseudoBackgroundPositioning();
+              border-style: solid;
+              border-image-slice: 1;
+              border-width: borders.$width-normal 0;
+              border-image-source: linear-gradient(
+                to left,
+                transparent,
+                colors.$purple-portage,
+                transparent
+              );
+            }
+          }
+        }
+      }
+    }
+
+    th,
+    td {
+      height: 90px;
+      font-size: texts.$fontSize-ml;
+      text-align: left;
+      color: colors.$white-eggShell;
+      letter-spacing: texts.$letterSpacing-normal;
+
+      &:first-of-type {
+        padding-left: spaces.$size-xxxl;
+      }
+
+      &:last-of-type {
+        padding-right: spaces.$size-xxxl;
+      }
+    }
+
+    th {
+      font-weight: texts.$fontWeight-bold;
+      letter-spacing: texts.$letterSpacing-normal;
+    }
+
+    td {
+      font-weight: texts.$fontWeight-light;
+    }
+
+    .rowColumnHeadings {
+      th {
+        font-weight: 300;
+        color: colors.$gray-200;
+        background: colors.$gray-400;
+
+        &:first-of-type {
+          border-top-left-radius: borders.$radius-s;
+          border-bottom-left-radius: borders.$radius-s;
+
+          &::before {
+            /* Sketchy way to set the gradient background to `table`,
+           * but currently there is no other way (unsupported): we
+           * set the pseudo element in the first th's content, then
+           * stretch it to the edges of the closest element that has
+           * relative position (as per writing, it is `table`) */
+
+            content: "";
+            @include mixins.pseudoBackgroundPositioning();
+            @include mixins.panel(0.5, 0.1);
+            @include mixins.glassShine(0.15, 0deg);
+          }
+        }
+
+        &:last-of-type {
+          border-top-right-radius: borders.$radius-s;
+          border-bottom-right-radius: borders.$radius-s;
+        }
+      }
+    }
+
+    /* 
+  // TODO: Implement this for mobile accordion support:
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    .mobileHidden {
+      display: none;
+    }
+
+    .mobileOnly {
+      display: unset;
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background: inherit;
+        }
+      }
+    }
+
+    tr {
+      display: block;
+    }
+
+    th,
+    td {
+      display: none;
+
+      &:first-of-type {
+        display: block;
+      }
+    }
+  } */
+  }
+}

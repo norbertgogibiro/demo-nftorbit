@@ -1,0 +1,7 @@
+@use "utils/styles/opacityValues";
+
+.Button {
+  &:disabled {
+    opacity: opacityValues.$halfSeeThrough;
+  }
+}

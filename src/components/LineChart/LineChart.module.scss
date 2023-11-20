@@ -1,0 +1,28 @@
+@use "utils/styles/spaces";
+@use "utils/styles/borders";
+@use "utils/styles/colors";
+@use "utils/styles/texts";
+
+.LineChart {
+  .tooltip {
+    height: 46px;
+    margin: spaces.$margin-general;
+    padding: 0 spaces.$size-xs;
+    background: colors.$gray-400;
+    border-radius: borders.$radius-l;
+
+    dt,
+    dd {
+      margin-top: spaces.$size-xs;
+    }
+
+    dt {
+      font-size: texts.$fontSize-xxs;
+      color: colors.$gray-100;
+    }
+
+    dd {
+      font-size: texts.$fontSize-m;
+    }
+  }
+}

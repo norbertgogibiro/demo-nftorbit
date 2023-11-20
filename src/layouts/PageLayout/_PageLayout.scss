@@ -1,0 +1,11 @@
+$size-header-filterContentGap-desktop: 10px;
+$size-header-filterContentGap-mobile: 6px;
+$size-header-height: 96px;
+$size-modal-minWidth: 763px;
+$size-modal-minHeight: 411px;
+$size-sideMargin-desktop: 30px;
+$size-sideMargin-mobile: 10px;
+
+:export {
+  sizeHeaderHeight: $size-header-height;
+}

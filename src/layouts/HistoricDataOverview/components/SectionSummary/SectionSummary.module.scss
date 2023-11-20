@@ -1,0 +1,86 @@
+@use "utils/styles/texts";
+@use "utils/styles/spaces";
+@use "utils/styles/borders";
+@use "utils/styles/colors";
+@use "utils/styles/mixins";
+@use "layouts/PageLayout/PageLayout";
+
+.SectionSummary {
+  display: flex;
+  margin: PageLayout.$size-sideMargin-desktop 0 124px;
+  padding: 0 PageLayout.$size-sideMargin-desktop;
+
+  h2 {
+    margin: 0 0 spaces.$size-l -2.5px;
+    font-size: 42px;
+    font-weight: texts.$fontWeight-bold;
+    letter-spacing: texts.$letterSpacing-condensed;
+  }
+
+  .index {
+    width: max-content;
+    margin-right: 51px;
+    text-align: center;
+
+    img {
+      display: block;
+      width: 107px;
+      margin: auto auto spaces.$size-m;
+      aspect-ratio: 1/1;
+      border-radius: borders.$radius-circle;
+    }
+
+    .btnCollect {
+      height: 21px;
+      margin: auto;
+      padding: 0 19px;
+      border: borders.$purple;
+      border-radius: borders.$radius-round;
+
+      &:active,
+      &:hover,
+      &:focus {
+        @include mixins.outerGlow;
+      }
+    }
+  }
+
+  dl {
+    display: flex;
+    margin: 0;
+    flex-wrap: wrap;
+    color: colors.$gray-200;
+    font-size: texts.$fontSize-s;
+
+    .definitionGroup {
+      width: 50%;
+      margin-bottom: spaces.$size-m;
+      flex-grow: 1;
+      font-size: texts.$fontSize-s;
+      font-weight: texts.$fontWeight-normal;
+
+      &:first-of-type {
+        width: 100%;
+        margin-bottom: spaces.$size-xxl;
+        color: colors.$purple-portage;
+        font-size: texts.$fontSize-ms;
+        font-weight: texts.$fontWeight-bold;
+      }
+
+      dt,
+      dd {
+        display: inline-block;
+      }
+
+      dt {
+        &:after {
+          content: ":";
+        }
+      }
+
+      dd {
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

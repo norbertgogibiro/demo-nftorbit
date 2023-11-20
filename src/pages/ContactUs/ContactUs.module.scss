@@ -1,0 +1,75 @@
+@use "utils/styles/spaces";
+@use "utils/styles/colors";
+@use "utils/styles/borders";
+@use "utils/styles/texts";
+@use "utils/styles/breakpoints";
+@use "utils/styles/opacityValues";
+@use "layouts/PageLayout/PageLayout";
+
+.ContactUs {
+  h2 {
+    max-width: 1231px;
+    margin-top: 146px;
+    font-size: 174px;
+    letter-spacing: texts.$letterSpacing-condensed;
+    font-weight: texts.$fontWeight-bold;
+    line-height: 149px;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      max-width: 254px;
+      margin-top: 65px;
+      font-size: 36px;
+      line-height: 33px;
+    }
+
+    span {
+      color: colors.$purple-portage;
+    }
+  }
+
+  .linkToForm {
+    display: inline-flex;
+    height: spaces.$size-xxl;
+    margin-top: spaces.$size-xxxl;
+    padding: spaces.$padding-capsule-desktop;
+    align-items: center;
+    justify-content: center;
+    background: colors.$gray-400;
+    border-radius: borders.$radius-xl;
+    font-size: texts.$fontSize-s;
+    color: colors.$gray-200;
+    letter-spacing: texts.$letterSpacing-expanded;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      height: spaces.$size-xs;
+      margin-top: spaces.$size-m;
+      padding: spaces.$padding-capsule-mobile;
+      font-size: texts.$fontSize-xxxxs;
+      letter-spacing: texts.$letterSpacing-normal;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      text-decoration: unset;
+      background: colors.$purple-portage;
+      color: colors.$white-full;
+    }
+  }
+
+  ul {
+    li {
+      &:not(:last-of-type) {
+        margin-bottom: spaces.$size-xl;
+
+        @media screen and (max-width: breakpoints.$mobile-max) {
+          margin-bottom: spaces.$size-xs;
+        }
+      }
+
+      a {
+        color: colors.$gray-400;
+      }
+    }
+  }
+}

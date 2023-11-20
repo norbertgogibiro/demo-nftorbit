@@ -1,0 +1,61 @@
+@use "utils/styles/texts";
+@use "utils/styles/spaces";
+@use "utils/styles/colors";
+@use "utils/styles/borders";
+@use "utils/styles/opacityValues";
+
+.TablePagination {
+  display: flex;
+  justify-content: space-between;
+  font-size: texts.$fontSize-xs;
+
+  p {
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  select {
+    padding: spaces.$size-xxxxs spaces.$size-xs;
+    background: colors.$gray-400;
+    border-radius: borders.$radius-round;
+    appearance: none;
+    text-align: center;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    border: none;
+
+    &:disabled {
+      opacity: opacityValues.$halfSeeThrough;
+    }
+  }
+
+  .singleStepNavigation {
+    display: flex;
+    align-items: center;
+    gap: spaces.$size-xxxl;
+
+    button {
+      display: flex;
+      gap: spaces.$size-xs;
+
+      &:first-of-type {
+        img {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:disabled {
+        opacity: opacityValues.$halfSeeThrough;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        &:not(:disabled) {
+          transform: scale(1.03);
+        }
+      }
+    }
+  }
+}

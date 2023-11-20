@@ -1,0 +1,70 @@
+@use "utils/styles/texts";
+@use "utils/styles/spaces";
+@use "utils/styles/colors";
+@use "../../../../Input";
+
+$size-labelTextPadding: 13.5px;
+$size-dropdownPaddingX: spaces.$size-xxxl;
+
+.Suggestions {
+  background: colors.$gray-450;
+  position: absolute;
+  display: flex;
+  top: 0%;
+  width: 100%;
+  min-height: 39px;
+  margin: 0;
+  padding: (Input.$size-height + spaces.$size-xxl) $size-dropdownPaddingX
+    spaces.$size-xxl;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: Input.$border-radius;
+  z-index: -1;
+
+  h2 {
+    width: 100%;
+    margin: 0 0 calc($size-labelTextPadding * -1) 0;
+    padding: 0 0 spaces.$size-xxl;
+    font-size: texts.$fontSize-xs;
+    font-weight: texts.$fontWeight-medium;
+    letter-spacing: texts.$letterSpacing-normal;
+    line-height: 1;
+    color: colors.$gray-300;
+  }
+
+  label {
+    width: 100%;
+
+    &:hover {
+      .suggestionText {
+        background: colors.$gray-400;
+      }
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+
+      & + .suggestionText {
+        display: flex;
+        height: 100%;
+        margin: 0 ($size-dropdownPaddingX * -0.5);
+        padding: $size-labelTextPadding ($size-dropdownPaddingX * 0.5);
+        align-items: center;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      &:checked,
+      &:active,
+      &:focus {
+        & + .suggestionText {
+          background: colors.$gray-400;
+        }
+      }
+    }
+  }
+}

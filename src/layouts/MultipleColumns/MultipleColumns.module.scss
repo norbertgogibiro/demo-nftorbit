@@ -1,0 +1,36 @@
+@use "utils/styles/breakpoints";
+
+.MultipleColumns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 100px;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    display: block;
+    max-width: 285px;
+    gap: 32px;
+  }
+
+  &.hasOrderedHeadings {
+    $counterName: headingNumber;
+    counter-reset: $counterName;
+    padding: 0;
+
+    li {
+      &::marker {
+        content: "";
+      }
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        &:before {
+          counter-increment: $counterName;
+          content: counter($counterName) "/ ";
+        }
+      }
+    }
+  }
+}

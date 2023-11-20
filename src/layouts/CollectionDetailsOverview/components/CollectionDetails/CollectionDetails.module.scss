@@ -1,0 +1,30 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/shadows";
+@use "utils/styles/borders";
+@use "utils/styles/opacityValues";
+
+.CollectionDetails {
+  dl {
+    display: flex;
+    width: 311px;
+    height: 24px;
+    padding: 9px;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(colors.$purple-portage, 0.2);
+    color: colors.$purple-portage;
+    font-size: texts.$fontSize-xs;
+    letter-spacing: texts.$letterSpacing-normal;
+    border-radius: borders.$radius-s;
+  }
+
+  p {
+    width: 418px;
+    color: colors.$white-eggShell;
+    font-size: texts.$fontSize-xs;
+    font-weight: texts.$fontWeight-light;
+    letter-spacing: texts.$letterSpacing-normal;
+    line-height: 15px;
+  }
+}

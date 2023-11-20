@@ -1,0 +1,86 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/spaces";
+@use "utils/styles/mixins";
+@use "components/BubbleChart/components/ChartInfoBar/ChartInfoBar";
+
+.FilterDrawerToggler {
+  height: 100%;
+
+  summary {
+    img {
+      margin-left: ChartInfoBar.$border-width;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      @include mixins.textOuterGlow(colors.$gray-250);
+    }
+  }
+
+  &[open] {
+    summary {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.isHighlighted {
+    summary {
+      background: colors.$purple-portage;
+    }
+  }
+
+  .drawer {
+    position: absolute;
+    width: 100%;
+    background: ChartInfoBar.$color-border;
+    z-index: -1;
+    @include ChartInfoBar.chartBarPanel();
+
+    .content {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 85px;
+      border-radius: ChartInfoBar.$border-radius;
+      background: ChartInfoBar.$color-panel;
+
+      fieldset {
+        border: none;
+        margin: 0;
+        padding: 1em;
+
+        legend {
+          margin: 0 3px 0 0;
+          padding: 0;
+          float: left;
+          color: colors.$gray-200;
+
+          &,
+          & + span {
+            font-size: texts.$fontSize-s;
+          }
+
+          & + span {
+            color: colors.$gray-400;
+          }
+        }
+
+        hr {
+          margin: spaces.$size-xs 0 0 0;
+          border-bottom: 0;
+        }
+
+        .options {
+          display: flex;
+          padding: spaces.$size-s 0;
+          justify-content: flex-start;
+          gap: spaces.$margin-general;
+        }
+      }
+    }
+  }
+}

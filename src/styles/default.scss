@@ -1,0 +1,120 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/breakpoints";
+
+* {
+  box-sizing: border-box;
+  line-height: 0.65;
+  outline: 0;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  -webkit-smoothing: antialiased;
+  -moz-osx-smoothing: grayscale;
+  background: colors.$background-site;
+  color: colors.$white-eggShell;
+  font-family: Karla;
+}
+
+button,
+summary,
+input,
+a {
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+summary,
+a[href],
+input:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+
+  &:visited {
+    color: unset;
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+table,
+summary,
+button,
+input,
+dl,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  text-transform: uppercase;
+}
+
+dt,
+dd {
+  margin: 0;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h2 {
+  max-width: 752px;
+  margin-top: 0;
+  color: colors.$white-eggShell;
+  font-size: texts.$fontSize-xxl;
+  font-weight: texts.$fontWeight-semiBold;
+  line-height: 60px;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    font-size: texts.$fontSize-xl;
+    line-height: 33px;
+  }
+}
+
+h3 {
+  font-size: texts.$fontSize-l;
+  font-weight: texts.$fontWeight-medium;
+  margin: 88px 0 43px;
+  line-height: 25px;
+}
+
+p {
+  max-width: 1146px;
+
+  &:first-of-type {
+    margin: 0;
+  }
+}
+
+li,
+p {
+  font-size: texts.$fontSize-ml;
+  font-weight: texts.$fontWeight-normal;
+  letter-spacing: texts.$letterSpacing-normal;
+  line-height: 27px;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    font-size: texts.$fontSize-xxxs;
+    line-height: 12px;
+  }
+}

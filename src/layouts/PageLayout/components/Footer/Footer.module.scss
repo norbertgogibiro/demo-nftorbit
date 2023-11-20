@@ -1,0 +1,52 @@
+@use "utils/styles/texts";
+@use "utils/styles/spaces";
+@use "utils/styles/breakpoints";
+@use "../../PageLayout";
+
+.Footer {
+  display: flex;
+  height: 398px;
+  margin-top: 435px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    height: 100px;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 115px;
+
+    li {
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: spaces.$margin-general;
+    }
+
+    @media screen and (max-width: breakpoints.$tablet-max) {
+      gap: 55px;
+    }
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      gap: 22px;
+
+      &:not(:first-of-type) {
+        margin-top: 11px;
+      }
+
+      li {
+        font-size: texts.$fontSize-xxxs;
+      }
+    }
+  }
+
+  .logo {
+    width: 100%;
+  }
+}

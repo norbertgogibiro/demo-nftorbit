@@ -1,0 +1,101 @@
+@use "utils/styles/colors";
+@use "utils/styles/timeDurations";
+@use "utils/styles/opacityValues";
+
+$size-loader: 1.5em;
+$size-spread: 2.5em;
+$speed-animationLoop: 1s;
+$speed-animationDelay: $speed-animationLoop / 5;
+
+.Loader {
+  display: inline-flex;
+  position: relative;
+  width: $size-loader;
+  height: $size-loader;
+  justify-content: center;
+
+  & > div {
+    position: relative;
+    top: -0.55 * $size-loader;
+    width: $size-loader;
+    height: $size-loader;
+    margin: auto;
+    color: colors.$purple-portage;
+    font-size: 7px;
+    text-indent: -9999em;
+    animation-delay: -0.16s;
+
+    &,
+    &:before,
+    &:after {
+      border-radius: 50%;
+      width: $size-loader;
+      height: $size-loader;
+      animation-fill-mode: both;
+      animation: bblFadInOut $speed-animationLoop infinite ease-in-out;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+    }
+
+    &:before {
+      left: -1 * $size-spread;
+      animation-delay: -1 * $speed-animationDelay;
+    }
+    &:after {
+      left: $size-spread;
+      animation-delay: $speed-animationDelay;
+    }
+  }
+}
+
+.LoadingArea {
+  position: relative;
+
+  .contentWrapper,
+  .loaderWrapper {
+    transition: opacity timeDurations.$transition-slow;
+  }
+
+  .loaderWrapper {
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+
+    .Loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.isLoading {
+    pointer-events: none;
+
+    .contentWrapper {
+      opacity: opacityValues.$halfSeeThrough;
+    }
+
+    &.isLoaderBackgroundHidden {
+      .contentWrapper {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@keyframes bblFadInOut {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 $size-loader 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 $size-loader 0 0;
+  }
+}

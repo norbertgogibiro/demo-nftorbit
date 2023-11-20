@@ -1,0 +1,23 @@
+@use "utils/styles/spaces";
+@use "utils/styles/colors";
+@use "utils/styles/mixins";
+
+.CollectionLinks {
+  display: flex;
+  height: 236px;
+  flex-direction: column;
+  justify-content: space-between;
+
+  a {
+    &:active,
+    &:hover,
+    &:focus {
+      @include mixins.shapedOuterGlow();
+    }
+
+    img {
+      margin: spaces.$fatFinger * -1;
+      padding: spaces.$fatFinger;
+    }
+  }
+}

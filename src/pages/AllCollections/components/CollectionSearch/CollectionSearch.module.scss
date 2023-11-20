@@ -1,0 +1,39 @@
+@use "utils/styles/colors";
+@use "utils/styles/timeDurations";
+@use "utils/styles/opacityValues";
+@use "utils/styles/zIndexLevels";
+
+.CollectionSearch {
+  display: flex;
+  width: 100%;
+  max-width: 646px;
+  height: 282px;
+  margin: auto;
+  align-items: center;
+
+  &:focus-within {
+    $stackingContextZLevel: zIndexLevels.$overContent;
+
+    &:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: colors.$black-ink;
+      animation: fade-in timeDurations.$transition-slowest forwards;
+      z-index: $stackingContextZLevel;
+    }
+
+    & > * {
+      z-index: $stackingContextZLevel;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: opacityValues.$slightlySeeThrough;
+  }
+}

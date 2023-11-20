@@ -1,0 +1,122 @@
+@use "utils/styles/borders";
+@use "utils/styles/spaces";
+@use "utils/styles/colors";
+@use "utils/styles/texts";
+@use "utils/styles/timeDurations";
+@use "utils/styles/opacityValues";
+
+$height-filter: 44px;
+
+.PeriodFilters {
+  display: flex;
+  margin-top: spaces.$margin-general;
+  justify-content: center;
+  gap: spaces.$size-xxxl;
+  animation: appear timeDurations.$transition-slowest ease-in-out;
+
+  .periodFilter {
+    display: block;
+    height: $height-filter;
+    text-transform: uppercase;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+
+      &:not(:disabled) {
+        &:active,
+        &:focus {
+          & + .filterText {
+            transform: scale(1.05);
+          }
+        }
+
+        & + .filterText {
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      &:disabled {
+        & + .filterText {
+          opacity: opacityValues.$halfSeeThrough;
+        }
+      }
+    }
+
+    .filterText {
+      width: 100%;
+      height: 100%;
+      padding: 7px 29px;
+      align-items: center;
+      transform: timeDurations.$transition-slow;
+      border-radius: borders.$radius-l;
+      letter-spacing: texts.$letterSpacing-condensed;
+      font-weight: texts.$fontWeight-medium;
+      text-align: center;
+
+      .title {
+        margin-bottom: 9px;
+        font-size: texts.$fontSize-l;
+        color: colors.$white-eggShell;
+      }
+
+      .changeIndicator {
+        font-size: texts.$fontSize-xs;
+      }
+    }
+
+    &.polarity {
+      &-negative {
+        .filterText {
+          .changeIndicator {
+            color: colors.$red;
+          }
+        }
+
+        &.isActive {
+          .filterText {
+            background: rgba(colors.$red, 0.4);
+          }
+        }
+      }
+
+      &-positive {
+        .filterText {
+          .changeIndicator {
+            color: colors.$green;
+          }
+        }
+
+        &.isActive {
+          .filterText {
+            background: rgba(colors.$green, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes appear {
+  0% {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+  }
+  1% {
+    visibility: visible;
+  }
+  50% {
+    height: $height-filter;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,65 @@
+@use "utils/styles/spaces";
+@use "utils/styles/breakpoints";
+
+$size-padding-cell: spaces.$size-xxs spaces.$size-s;
+
+.TableCellMobileContent {
+  position: relative;
+  padding: $size-padding-cell;
+
+  .btnExpand {
+    // TODO: Add these styles to a global resetter file
+
+    /* Resetting would target <a href> with these styles. And this is a <button>.
+     * We should do `a, .link { ... }` in the reset file, and add the final class
+     * name that will be in the reset file (.link?) for `.btnExpand` and other
+     * hyperlink-styled elements. */
+    &:focus {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      touch-action: manipulation;
+    }
+  }
+
+  .rowOptionsArea {
+    position: absolute;
+    inset: 0 0 auto auto;
+    padding: $size-padding-cell;
+
+    &:not(.detailsExpanded) {
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0s 0.1s;
+    }
+  }
+
+  .btnLinkShouldBeGlobalMaybe {
+    text-decoration: underline;
+  }
+
+  .cellDetails {
+    width: 100%;
+    max-height: 0;
+    flex-shrink: 0;
+    margin-top: 0;
+    transition: max-height 0.25s cubic-bezier(0, 1, 0, 1),
+      margin-top 0.25s ease-in-out;
+    overflow: hidden;
+
+    &.expanded {
+      max-height: 2000px;
+      margin-top: spaces.$size-s;
+      transition: max-height 0.5s ease-in-out, margin-top 0s;
+    }
+
+    .definitionGroup {
+      padding: spaces.$size-xxs 0;
+    }
+  }
+
+  @media screen and (min-width: breakpoints.$tablet-min) {
+    .mobileOnly {
+      display: none;
+    }
+  }
+}

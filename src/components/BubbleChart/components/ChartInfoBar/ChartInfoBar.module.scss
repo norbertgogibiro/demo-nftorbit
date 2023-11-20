@@ -1,0 +1,100 @@
+@use "utils/styles/texts";
+@use "utils/styles/mixins";
+@use "utils/styles/opacityValues";
+@use "utils/styles/timeDurations";
+@use "./ChartInfoBar";
+
+$size-menuFromEdge: ChartInfoBar.$border-width * 2;
+
+@mixin opacityTransition($isDelayed: "no") {
+  $time-transitionDelay: if(
+    $isDelayed == "delayed",
+    timeDurations.$transition-slowest * 4,
+    0s
+  );
+
+  transition: opacity timeDurations.$transition-slowest $time-transitionDelay;
+}
+
+.ChartInfoBar {
+  position: absolute;
+  top: auto;
+  bottom: $size-menuFromEdge;
+  left: 50%;
+  width: max-content;
+  height: ChartInfoBar.$size-height;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  z-index: 0;
+
+  // Adding some area around the filter to avoid bubble hovering in the edge outline:
+  &:before {
+    @include ChartInfoBar.safeHoverArea();
+  }
+
+  .infoBarContent {
+    display: flex;
+    width: max-content;
+    max-width: ChartInfoBar.$size-maxWidth;
+    height: ChartInfoBar.$size-height;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    background: ChartInfoBar.$color-panel;
+    border-radius: ChartInfoBar.$border-radius;
+    opacity: opacityValues.$slightlySeeThrough;
+    @include ChartInfoBar.chartBarPanel();
+    @include opacityTransition("delayed");
+
+    &:hover,
+    &:focus-within {
+      opacity: 1;
+      @include opacityTransition();
+
+      .btnToggleMenuTopPosition {
+        opacity: opacityValues.$halfSeeThrough;
+
+        &:active,
+        &:focus,
+        &:hover {
+          opacity: 1;
+          @include mixins.textOuterGlow();
+        }
+      }
+    }
+
+    .btnShowCollection {
+      width: 100vw;
+      height: 100%;
+      max-width: ChartInfoBar.$size-maxWidth;
+      text-align: center;
+      font-size: inherit;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: ChartInfoBar.$color-activeElement;
+      }
+    }
+  }
+
+  .btnToggleMenuTopPosition {
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    font-size: texts.$fontSize-l;
+    z-index: 1;
+  }
+
+  &.isTopPositioned {
+    top: $size-menuFromEdge;
+    bottom: auto;
+
+    .btnToggleMenuTopPosition {
+      bottom: auto;
+      top: 100%;
+      transform: rotate(180deg);
+    }
+  }
+}

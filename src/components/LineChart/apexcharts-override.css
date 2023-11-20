@@ -1,0 +1,9 @@
+.apexcharts-tooltip {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.apexcharts-marker {
+  transition: none !important;
+}

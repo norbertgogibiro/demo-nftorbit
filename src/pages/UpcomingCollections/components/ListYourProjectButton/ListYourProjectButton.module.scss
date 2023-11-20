@@ -1,0 +1,10 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+
+.ListYourProjectButton {
+  width: 265px;
+  height: 100%;
+  font-size: texts.$fontSize-ml;
+  font-weight: texts.$fontWeight-semiBold;
+  background: colors.$purple-portage;
+}

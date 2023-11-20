@@ -1,0 +1,75 @@
+@use "utils/styles/colors";
+
+.AllCollectionsTable {
+  tbody {
+    a[href],
+    button:not(:disabled) {
+      display: inline-block;
+
+      &:active,
+      &:hover,
+      &:focus {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .polarity {
+    &-negative {
+      color: colors.$red;
+    }
+
+    &-positive {
+      color: colors.$green;
+    }
+  }
+
+  td {
+    &:nth-child(1) {
+      width: 116px;
+    }
+    &:nth-child(2) {
+      width: 292px;
+    }
+    &:nth-child(3) {
+      width: 142px;
+    }
+    &:nth-child(4) {
+      width: 100px;
+    }
+    &:nth-child(5) {
+      width: 96px;
+    }
+    &:nth-child(6) {
+      width: 96px;
+    }
+    &:nth-child(7) {
+      width: 194px;
+    }
+    &:nth-child(8) {
+      width: 142px;
+    }
+    &:nth-child(9) {
+      width: 100px;
+    }
+    &:nth-child(10) {
+      width: 96px;
+    }
+    &:nth-child(11) {
+      width: 96px;
+    }
+    &:nth-child(12) {
+      width: 241px;
+    }
+    &:nth-child(13) {
+      width: 71px;
+      text-align: center;
+    }
+  }
+}

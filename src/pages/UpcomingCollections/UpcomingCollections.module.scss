@@ -1,0 +1,10 @@
+.UpcomingCollections {
+  .socialIcon {
+    width: 19px;
+    aspect-ratio: 1/1;
+
+    &:not(:last-of-type) {
+      margin-right: 39px;
+    }
+  }
+}

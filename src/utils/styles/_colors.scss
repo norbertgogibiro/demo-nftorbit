@@ -1,0 +1,33 @@
+// Colors - temp:
+$gray-500: red; // TODO: delete
+
+// Colors - brand:
+$black-full: #000000;
+$black-ink: #141414;
+$white-full: #ffffff;
+$white-eggShell: #eeeeed;
+$purple-portage: #ada0f8;
+$purple-deep: #2b2073; // TODO: This is not the correct value!
+$blue-electric: #061594;
+
+// Colors - highlighting:
+$red: #e53028;
+$green: #4faf62;
+
+// Colors - grayscale:
+$gray-100: #cccbcc;
+$gray-200: #999999;
+$gray-250: #717171; // TODO: This is not on the defined color palette!
+$gray-300: #666566;
+$gray-400: #333333;
+$gray-450: #141414; // TODO: This is not on the defined color palette!
+
+// Colors - element specific:
+$background-site: $black-ink;
+
+:export {
+  purplePortage: $purple-portage;
+  gray400: $gray-400;
+  green: $green;
+  red: $red;
+}

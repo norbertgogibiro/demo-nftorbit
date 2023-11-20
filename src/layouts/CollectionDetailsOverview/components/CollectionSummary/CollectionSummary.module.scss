@@ -1,0 +1,45 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/spaces";
+
+.CollectionSummary {
+  display: flex;
+  align-items: center;
+
+  & > img {
+    width: 69px;
+    margin-right: 18px;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+  }
+
+  section {
+    flex-grow: 1;
+
+    h2 {
+      margin: 0;
+      font-size: 55.8px;
+      font-weight: texts.$fontWeight-bold;
+      letter-spacing: texts.$letterSpacing-condensed;
+    }
+
+    dl {
+      display: flex;
+      margin: 15px 0 0 0;
+      gap: spaces.$margin-general;
+      font-size: texts.$fontSize-s;
+      font-weight: texts.$fontWeight-normal;
+      letter-spacing: texts.$letterSpacing-normal;
+
+      .definitionGroup {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+
+        dt {
+          color: colors.$gray-200;
+        }
+      }
+    }
+  }
+}

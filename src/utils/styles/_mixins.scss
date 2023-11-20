@@ -1,0 +1,88 @@
+@use "utils/styles/colors";
+@use "utils/styles/shadows";
+@use "utils/styles/borders";
+@use "utils/styles/opacityValues";
+@use "utils/styles/timeDurations";
+
+$defaultGradientAngle: 180deg;
+$defaultDropShadowOpacity: 0.2;
+
+@mixin outerGlow($color: colors.$gray-300) {
+  box-shadow: 0 0 shadows.$spread $color;
+}
+
+@mixin shapedOuterGlow($color: colors.$gray-300) {
+  filter: drop-shadow(0px 0px shadows.$spread $color);
+}
+
+@mixin textOuterGlow($color: colors.$gray-100) {
+  text-shadow: -1px -1px shadows.$spread rgba($color, opacityValues.$halfSeeThrough),
+    1px -1px shadows.$spread rgba($color, opacityValues.$halfSeeThrough),
+    -1px 1px shadows.$spread rgba($color, opacityValues.$halfSeeThrough),
+    1px 1px shadows.$spread rgba($color, opacityValues.$halfSeeThrough);
+}
+
+@mixin pseudoBackgroundPositioning($position: absolute) {
+  position: $position;
+  inset: 0;
+  z-index: -1;
+}
+
+@mixin panel($panelOpacity, $dropShadowOpacity: $defaultDropShadowOpacity) {
+  background: rgba(colors.$gray-450, $panelOpacity);
+  border-radius: borders.$radius-s;
+  box-shadow: 1px 1px shadows.$spread
+    rgba(colors.$black-full, $dropShadowOpacity);
+}
+
+@mixin glassShine($gradientOpacity, $gradientAngle: $defaultGradientAngle) {
+  background: none;
+  background: linear-gradient(
+    $gradientAngle,
+    rgba(colors.$gray-250, $gradientOpacity),
+    transparent
+  );
+}
+
+@mixin milkGlassBlur() {
+  filter: blur(194px);
+}
+
+@mixin blackMilkGlassPanel(
+  $panelOpacity,
+  $gradientOpacity,
+  $dropShadowOpacity: $defaultDropShadowOpacity,
+  $gradientAngle: $defaultGradientAngle
+) {
+  position: relative;
+  overflow: hidden;
+  @include panel($panelOpacity, $dropShadowOpacity);
+
+  &:before {
+    content: "";
+    @include pseudoBackgroundPositioning();
+    @include glassShine($gradientOpacity, $gradientAngle);
+  }
+
+  &:after {
+    content: "";
+    @include milkGlassBlur();
+  }
+}
+
+@mixin blurredLayer() {
+  @include pseudoBackgroundPositioning(fixed);
+  opacity: 0;
+  transition: opacity 0.001s; // TODO: This was implemented for mobile transitions, but it only works on desktop!
+  backdrop-filter: blur(13px);
+  animation: fade-in timeDurations.$transition-slowest forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

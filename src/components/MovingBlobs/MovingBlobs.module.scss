@@ -1,0 +1,22 @@
+@use "utils/styles/zIndexLevels";
+@use "utils/styles/opacityValues";
+
+.MovingBlobs {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: zIndexLevels.$background;
+  filter: blur(50px);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  polygon {
+    stroke-width: 150;
+    stroke-linejoin: round;
+    opacity: opacityValues.$slightlySeeThrough;
+  }
+}

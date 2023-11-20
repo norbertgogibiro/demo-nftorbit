@@ -1,0 +1,14 @@
+@use "utils/styles/breakpoints";
+@use "layouts/PageLayout/PageLayout";
+
+.PrivacyAndTerms {
+  .anchorredSections {
+    & > section {
+      padding: 120px 0 212px;
+
+      @media screen and (max-width: breakpoints.$mobile-max) {
+        padding: PageLayout.$size-header-height 0 50px;
+      }
+    }
+  }
+}

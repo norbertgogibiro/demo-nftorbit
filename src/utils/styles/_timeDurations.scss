@@ -1,0 +1,9 @@
+// Time durations:
+$transition-fast: 0.1s;
+$transition-normal: 0.15s;
+$transition-slow: 0.3s;
+$transition-slowest: 0.5s;
+
+:export {
+  transitionSlowest: $transition-slowest;
+}

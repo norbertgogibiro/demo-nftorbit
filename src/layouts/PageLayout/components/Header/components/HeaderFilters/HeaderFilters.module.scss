@@ -1,0 +1,127 @@
+@use "utils/styles/borders";
+@use "utils/styles/colors";
+@use "utils/styles/texts";
+@use "utils/styles/spaces";
+@use "utils/styles/breakpoints";
+@use "utils/styles/opacityValues";
+@use "utils/styles/timeDurations";
+@use "../../../../PageLayout";
+
+$gap-filter-desktop: 15px;
+$gap-filter-mobile: 9px;
+
+.HeaderFilters {
+  display: flex;
+  width: 33%;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: $gap-filter-desktop;
+  flex-shrink: 0;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    width: 100%;
+    gap: $gap-filter-mobile;
+  }
+
+  .filter {
+    display: flex;
+    width: min-content;
+    height: spaces.$size-xxl;
+    padding: spaces.$padding-capsule-desktop;
+    border: borders.$purple;
+    border-radius: borders.$radius-round;
+    overflow: hidden;
+    font-size: texts.$fontSize-s;
+    font-weight: texts.$fontWeight-bold;
+    letter-spacing: texts.$letterSpacing-normal;
+    align-items: center;
+    opacity: opacityValues.$halfSeeThrough;
+    transition: timeDurations.$transition-fast;
+    flex-shrink: 0;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      height: spaces.$size-l;
+      padding: spaces.$padding-capsule-mobile;
+      font-size: texts.$fontSize-xxxs;
+    }
+
+    &.isSelected,
+    &:hover,
+    &:focus,
+    &:focus-within {
+      opacity: 1;
+    }
+
+    &.isSelected {
+      border-radius: borders.$radius-s;
+
+      @media screen and (max-width: breakpoints.$mobile-max) {
+        border-radius: borders.$radius-xxs;
+      }
+    }
+  }
+
+  .mobileOnly {
+    @media screen and (min-width: breakpoints.$tablet-min) {
+      display: none;
+    }
+  }
+
+  .dropdownWrapper {
+    position: relative;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      display: none;
+    }
+
+    & > summary {
+      padding: spaces.$padding-capsule-desktop;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background: colors.$purple-portage;
+      }
+    }
+
+    .dropdown {
+      position: absolute;
+      display: flex;
+      top: 100%;
+      right: $gap-filter-desktop * -1;
+      width: 100%;
+      padding: $gap-filter-desktop;
+      box-sizing: content-box;
+      background: colors.$black-ink;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: $gap-filter-desktop;
+      z-index: 1;
+
+      @media screen and (max-width: breakpoints.$mobile-max) {
+        right: $gap-filter-mobile;
+        padding: $gap-filter-mobile;
+        gap: $gap-filter-mobile;
+      }
+
+      .filter {
+        width: 100%;
+        background: colors.$purple-portage;
+        justify-content: center;
+        opacity: 1;
+
+        .filterIcon {
+          opacity: opacityValues.$halfSeeThrough;
+        }
+
+        &:active,
+        &:hover,
+        &:focus {
+          .filterIcon {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

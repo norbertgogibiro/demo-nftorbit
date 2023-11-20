@@ -1,0 +1,17 @@
+@use "utils/styles/spaces";
+@use "layouts/PageLayout/PageLayout";
+
+.CollectionDetailsOverview {
+  display: flex;
+  height: PageLayout.$size-modal-minHeight;
+  padding: spaces.$margin-general 20px;
+  align-items: flex-end;
+
+  .mainContent {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

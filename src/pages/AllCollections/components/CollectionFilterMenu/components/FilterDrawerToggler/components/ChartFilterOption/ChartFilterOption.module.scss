@@ -1,0 +1,68 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/spaces";
+@use "utils/styles/borders";
+
+$size-gutter: spaces.$size-xxxs;
+
+.ChartFilterOption {
+  margin: 0 ($size-gutter * -1);
+
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+
+    & + .filterOptionContent {
+      display: inline-flex;
+      gap: $size-gutter;
+      font-size: texts.$fontSize-s;
+      cursor: pointer;
+
+      &,
+      .text {
+        padding: $size-gutter;
+        border-radius: borders.$radius-round;
+      }
+
+      .text {
+        margin: $size-gutter * -1;
+      }
+
+      .iconClose {
+        visibility: hidden;
+      }
+    }
+
+    &:checked {
+      & + .filterOptionContent {
+        background: colors.$gray-200;
+
+        .iconClose {
+          visibility: visible;
+        }
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      & + .filterOptionContent {
+        .text {
+          outline: borders.$width-normal solid colors.$gray-200;
+        }
+      }
+
+      &:checked {
+        & + .filterOptionContent {
+          outline: borders.$width-normal solid colors.$gray-200;
+
+          .text {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

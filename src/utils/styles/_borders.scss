@@ -1,0 +1,21 @@
+@use "./colors";
+
+// Borders - widths:
+$width-normal: 1px;
+
+// Borders - radii:
+$radius-xxs: 7px;
+$radius-xs: 9px;
+$radius-s: 12px;
+$radius-m: 14px;
+$radius-l: 17px;
+$radius-xl: 20px;
+$radius-round: 100px;
+$radius-circle: 100%;
+
+// Borders - general:
+$purple: $width-normal solid colors.$purple-portage;
+
+:export {
+  widthNormal: $width-normal;
+}

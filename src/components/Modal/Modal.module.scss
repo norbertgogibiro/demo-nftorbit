@@ -1,0 +1,81 @@
+@use "utils/styles/zIndexLevels";
+@use "utils/styles/spaces";
+@use "utils/styles/shadows";
+@use "utils/styles/colors";
+@use "utils/styles/borders";
+@use "utils/styles/opacityValues";
+@use "utils/styles/timeDurations";
+@use "utils/styles/breakpoints";
+@use "utils/styles/mixins";
+@use "layouts/PageLayout/PageLayout";
+
+$size-padding-btnCloseModal: spaces.$margin-general spaces.$fatFinger;
+
+.Modal {
+  position: fixed;
+  z-index: zIndexLevels.$overlay;
+
+  &::before {
+    content: "";
+    @include mixins.blurredLayer();
+  }
+
+  .modalPanel {
+    position: fixed;
+    top: 50%;
+    left: 50vw;
+    min-width: PageLayout.$size-modal-minWidth;
+    min-height: PageLayout.$size-modal-minHeight;
+    background: colors.$black-ink;
+    border-radius: borders.$radius-m;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .btnClose {
+    position: absolute;
+    inset: 0 0 auto auto;
+    padding: $size-padding-btnCloseModal;
+    z-index: 1;
+
+    &:active,
+    &:hover,
+    &:focus {
+      @include mixins.shapedOuterGlow();
+    }
+
+    .iconClose {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    .modalPanel {
+      top: unset;
+      left: 0;
+      width: 100%;
+      max-height: 100%;
+      transform: unset;
+      animation: draw-in timeDurations.$transition-slow forwards;
+    }
+
+    .btnClose {
+      $size-margin-content-smallScreen: $size-padding-btnCloseModal -
+        spaces.$fatFinger;
+
+      margin: $size-margin-content-smallScreen $size-margin-content-smallScreen
+        0 0;
+
+      padding: spaces.$fatFinger;
+    }
+  }
+}
+
+@keyframes draw-in {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 0;
+  }
+}

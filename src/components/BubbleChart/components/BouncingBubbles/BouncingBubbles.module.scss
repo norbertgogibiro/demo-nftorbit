@@ -1,0 +1,76 @@
+@use "utils/styles/colors";
+@use "utils/styles/mixins";
+@use "layouts/PageLayout/PageLayout";
+
+@mixin bubbleGradient($color) {
+  outline: 30px solid $color;
+  background: none;
+  background: radial-gradient(circle closest-side, transparent 75%, $color 90%);
+}
+
+.BouncingBubbles {
+  height: calc(
+    100vh - PageLayout.$size-header-height - PageLayout.$size-sideMargin-desktop
+  );
+
+  //@include mixins.blackMilkGlassPanel(0.7, 0.08); // Value defined in design
+  // More similar to design appearance:
+  @include mixins.blackMilkGlassPanel(0.7, 0.3);
+
+  .frame {
+    width: 100%;
+    height: 100%;
+
+    .bubble {
+      position: fixed;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        aspect-ratio: 1/1;
+        position: "absolute";
+      }
+
+      & > * {
+        white-space: nowrap;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        inset: -20% -12% 0 0;
+        border-radius: 100%;
+        box-sizing: border-box;
+        z-index: 9;
+      }
+
+      &.color {
+        &-green {
+          &:before {
+            @include bubbleGradient(colors.$green);
+          }
+        }
+
+        &-red {
+          &:before {
+            @include bubbleGradient(colors.$red);
+          }
+        }
+      }
+    }
+  }
+}

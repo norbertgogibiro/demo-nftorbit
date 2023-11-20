@@ -1,0 +1,133 @@
+@use "utils/styles/colors";
+@use "utils/styles/texts";
+@use "utils/styles/borders";
+@use "utils/styles/mixins";
+@use "utils/styles/shadows";
+@use "utils/styles/opacityValues";
+@use "utils/styles/timeDurations";
+@use "components/BubbleChart/components/ChartInfoBar/ChartInfoBar";
+
+$size-menuFromEdge: ChartInfoBar.$border-width * 2;
+$size-drawerFromFilters: ChartInfoBar.$size-height + ChartInfoBar.$border-width;
+$size-positionTogglerTriangle: 6px;
+$border-width-positionTogglerTriangle: 2px;
+
+.CollectionFilterMenu {
+  position: relative;
+  width: max-content;
+  height: ChartInfoBar.$size-height;
+  text-transform: uppercase;
+  z-index: 0;
+
+  .filterContent {
+    display: flex;
+    top: auto;
+    bottom: $size-menuFromEdge;
+    max-width: ChartInfoBar.$size-maxWidth;
+    height: ChartInfoBar.$size-height;
+    border-radius: ChartInfoBar.$border-radius;
+    overflow: hidden;
+    transition: opacity timeDurations.$transition-normal;
+
+    .btnToggleMenuExpansion,
+    .filterOptionsToggler,
+    .btnClearFilters {
+      display: flex;
+      height: 100%;
+      padding: 0 25px;
+      font-size: texts.$fontSize-m;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .collapsibleArea {
+      display: flex;
+      width: 100%;
+      max-width: 0;
+      overflow: hidden;
+      transition: timeDurations.$transition-slow;
+
+      & > * {
+        border-left: borders.$width-normal solid
+          rgba(colors.$purple-portage, opacityValues.$halfSeeThrough);
+      }
+
+      .chartFilter {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .btnClearFilters {
+    &.isAnyFilterAltered {
+      border-top-right-radius: ChartInfoBar.$border-radius;
+      border-bottom-right-radius: ChartInfoBar.$border-radius;
+      background: ChartInfoBar.$color-activeElement;
+
+      img {
+        filter: brightness(3); // to turn it white
+      }
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      img {
+        filter: brightness(2); // to turn it white
+      }
+    }
+  }
+
+  .btnToggleMenuExpansion {
+    transition: background-color timeDurations.$transition-slow;
+    font-weight: texts.$fontWeight-bold;
+    border-top-left-radius: ChartInfoBar.$border-radius;
+    border-bottom-left-radius: ChartInfoBar.$border-radius;
+
+    &:active,
+    &:hover,
+    &:focus {
+      @include mixins.textOuterGlow(colors.$gray-250);
+    }
+  }
+
+  .filterOptionsDrawer {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding-bottom: ChartInfoBar.$size-height + ChartInfoBar.$border-width;
+
+    // Adding some area around the filter to avoid bubble hovering in the edge outline:
+    &:before {
+      @include ChartInfoBar.safeHoverArea();
+    }
+  }
+
+  &.isTopPositioned {
+    .filterOptionsDrawer {
+      top: 0;
+      bottom: auto;
+      padding-bottom: unset;
+      padding-top: $size-drawerFromFilters;
+    }
+  }
+
+  &.isExpanded {
+    .collapsibleArea {
+      max-width: 30em;
+    }
+
+    .btnToggleMenuExpansion {
+      background: ChartInfoBar.$color-activeElement;
+
+      &:active,
+      &:hover,
+      &:focus {
+        @include mixins.textOuterGlow();
+      }
+    }
+
+    .filterContent {
+      background: ChartInfoBar.$color-panel;
+    }
+  }
+}

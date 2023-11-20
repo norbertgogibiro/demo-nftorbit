@@ -1,0 +1,32 @@
+@use "utils/styles/texts";
+@use "utils/styles/colors";
+@use "utils/styles/breakpoints";
+
+.SectionLinks {
+  display: flex;
+  list-style: none;
+
+  li {
+    &:not(:first-of-type) {
+      &::before {
+        content: "|";
+        padding: 0 0.5em;
+        color: colors.$gray-300;
+      }
+    }
+  }
+
+  a {
+    color: colors.$gray-300;
+    font-size: texts.$fontSize-m;
+    text-transform: unset;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      font-size: texts.$fontSize-xxs;
+    }
+
+    &.isCurrent {
+      color: colors.$purple-portage;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use "utils/styles/spaces";
+@use "utils/styles/breakpoints";
+@use "utils/styles/timeDurations";
+@use "../../../../../PageLayout";
+
+.HeaderFilter {
+  .content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    max-width: 8em; // just some random optimal number for the sliding effect, can be edited later
+    margin-left: PageLayout.$size-header-filterContentGap-desktop;
+    transition: timeDurations.$transition-slow;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: PageLayout.$size-header-filterContentGap-desktop;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      margin-left: PageLayout.$size-header-filterContentGap-mobile;
+      gap: PageLayout.$size-header-filterContentGap-mobile;
+    }
+  }
+
+  &:not(.isSelected) {
+    .content {
+      max-width: 0;
+      margin: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+  }
+
+  .iconClose {
+    width: 8px;
+    aspect-ratio: 1/1;
+
+    @media screen and (max-width: breakpoints.$mobile-max) {
+      width: 5px;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .iconClose {
+      transform: scale(1.1);
+    }
+  }
+}

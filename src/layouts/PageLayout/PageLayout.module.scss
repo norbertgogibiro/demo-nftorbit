@@ -1,0 +1,12 @@
+@use "utils/styles/breakpoints";
+@use "./PageLayout";
+
+.PageLayout {
+  padding: PageLayout.$size-sideMargin-desktop;
+  padding-top: PageLayout.$size-header-height;
+
+  @media screen and (max-width: breakpoints.$mobile-max) {
+    padding: PageLayout.$size-sideMargin-mobile;
+    padding-top: PageLayout.$size-header-height;
+  }
+}

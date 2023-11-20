@@ -1,0 +1,10 @@
+@use "utils/styles/colors";
+
+.PartiallyHighlightedText {
+  color: colors.$gray-200;
+
+  mark {
+    color: colors.$white-eggShell;
+    background: none;
+  }
+}
